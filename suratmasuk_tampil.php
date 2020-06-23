@@ -1,98 +1,58 @@
-<?php include "../session-start.php";?>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Kepegawaian | RSKIA Rachmi</title>
-    <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.css" rel="stylesheet">
-    <!-- Add custom CSS here -->
-    <link href="../css/sb-admin.css" rel="stylesheet">
-    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
-  </head>
-  <body>
-    <nav>
-    <div id="wrapper">
-      <?php include "menu.php"; ?>
-        </div><!-- /.navbar-collapse -->
-      </nav>
-      <div id="page-wrapper">
-        <div class="row">
-          <div class="col-lg-12">
-            <h1>Tabel <small>Surat Masuk</small></h1>
-            <ol class="breadcrumb">
-              <li><a href="dashboard.php"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-              <li class="active"><i class="fa fa-edit"></i> Surat Masuk</li>
-            </ol>
-            <?php include "../notifikasi1.php"?>
-          </div>
-        </div><!-- /.row -->
-        <div class="row">
-          <div class="col-lg-12">
-          <div class="table-responsive">
-            <table class="table table-bordered table-hover table-striped tablesorter">
-                <thead>
-                    <tr>
-                    <th>No</th>
-                    <th>Nomor Surat</th>
-                    <th>Tanggal</th>
-                    <th>Perihal</th>
-                    <th>Ditujukan</th>
-                    <th>Asal Surat</th>
-                    <th>Dokumen</th>
-                    <th>Action</th>
-                    <!--<th colspan="2">Proses</th>-->
-                   </tr>
-                </thead>
-                <tbody>
-                  <?php 
-                    include '../koneksi.php';
-                    $no = 1;
-                    $data = mysqli_query($koneksi,"select * from surat_masuk ORDER BY no DESC ;");
-                    while($d = mysqli_fetch_array($data)){
-                  ?>
-                  <tr>
-                    <!--<td><?php echo $no++; ?></td>-->
-                    <td><?php echo $d['no']; ?></td>
-                    <td><?php echo $d['nomor_surat']; ?></td>
-                    <td><?php echo $d['tanggal']; ?></td>
-                    <td><?php echo $d['perihal']; ?></td>
-                    <td><?php echo $d['tujuan']; ?></td>
-                    <td><?php echo $d['asal']; ?></td>
-                    <td><?php echo $d['asal']; ?></td>
-                    <td>
-                          <a href="suratmasuk_edit.php?no=<?php echo $d['no']; ?>"
-                        <button type="button" class="btn btn-warning">EDIT</a>
-                          <a href="suratmasuk_hapus.php?no=<?php echo $d['no']; ?>"
+<?php include 'views/header.php';?>
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1>Tabel <small>Surat Masuk</small></h1>
+      <ol class="breadcrumb">
+        <li><a href="dashboard.php"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="active"><i class="fa fa-edit"></i> Surat Masuk</li>
+      </ol>
+      <?php include "../notifikasi1.php"?>
+    </div>
+  </div><!-- /.row -->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped tablesorter">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nomor Surat</th>
+              <th>Tanggal</th>
+              <th>Perihal</th>
+              <th>Ditujukan</th>
+              <th>Asal Surat</th>
+              <th>Dokumen</th>
+              <th>Action</th>
+              <!--<th colspan="2">Proses</th>-->
+            </tr>
+          </thead>
+          <tbody>
+            <?php 
+            include '../koneksi.php';
+            $no = 1;
+            $data = mysqli_query($koneksi,"select * from surat_masuk ORDER BY no DESC ;");
+            while($d = mysqli_fetch_array($data)){
+              ?>
+              <tr>
+                <!--<td><?php echo $no++; ?></td>-->
+                <td><?php echo $d['no']; ?></td>
+                <td><?php echo $d['nomor_surat']; ?></td>
+                <td><?php echo $d['tanggal']; ?></td>
+                <td><?php echo $d['perihal']; ?></td>
+                <td><?php echo $d['tujuan']; ?></td>
+                <td><?php echo $d['asal']; ?></td>
+                <td><?php echo $d['asal']; ?></td>
+                <td>
+                  <a href="suratmasuk_edit.php?no=<?php echo $d['no']; ?>"
+                    <button type="button" class="btn btn-warning">EDIT</a>
+                      <a href="suratmasuk_hapus.php?no=<?php echo $d['no']; ?>"
                         <button type="button" class="btn btn-danger">HAPUS</a>
-                    </td>
-                    <!--<td>
-                      <div align="center">
-                      <a href="suratmasuk_edit.php?no=<?php echo $d['no']; ?>">EDIT</a>
-                    </div>
-                    </td>
-                    <td>
-                      <div align="center">
-                      <a href="suratmasuk_hapus.php?no=<?php echo $d['no']; ?>">HAPUS</a>
-                      </div>
-                    </td>-->
-                  </tr>
-                  <?php 
-                    }
-                    ?>
-                    </tbody>
-                  </table>
+                        </td>
+                        </tr><?php } ?>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-          </div>
-        </div><!-- /.row -->
-      </div><br><br><?php include "../copyright.php";?><!-- /#page-wrapper -->
-    </div><!-- /#wrapper -->
-    <!-- JavaScript -->
-    <script src="../js/jquery-1.10.2.js"></script>
-    <script src="../js/bootstrap.js"></script>
-
-  </body>
-</html>
+              </div><!-- /.row -->
+              <?php include 'views/footer.php';?>
